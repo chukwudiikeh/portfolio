@@ -368,7 +368,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
             <tbody id="contribRows"><tr><td colspan="3" class="d">loading from GitHub…</td></tr></tbody>
           </table>
         </div>
-        <a class="d-link" href="https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3Achukwudiikeh" target="_blank" rel="noopener"><span class="kbd">↗</span><span>all merged PRs on GitHub</span></a>
+        <a class="d-link" href="https://github.com/search?q=is%3Apr+is%3Amerged+author%3Achukwudiikeh&type=pullrequests" target="_blank" rel="noopener"><span class="kbd">↗</span><span>all merged PRs on GitHub</span></a>
       </div>
       <div class="blk focus">
         <span class="bt"> featured pull requests </span>
@@ -391,7 +391,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       <div class="blk">
         <span class="bt"> about.md </span>
         <div class="prose">
-          <p>I build backend systems in Rust, focused on Bitcoin. I've written my own wallet library and a CLI on top of it, contributed to the Bitcoin Dev Kit, and built Lightning, AI-payment and Soroban projects with hackathon and protocol teams.</p>
+          <p>I build backend systems in Rust, focused on Bitcoin and Stellar. I've written my own wallet library and a CLI on top of it, contributed to the Bitcoin Dev Kit, and built Lightning, AI-payment and Soroban projects with hackathon and protocol teams.</p>
           <p>I like breaking a problem into small parts and testing each one. Wallet and payment code leaves no room for loose ends, so I aim to <span class="a">get the details right every time</span>.</p>
           <p>I'm looking for Rust backend or blockchain roles where I can keep learning and ship reliable work. I'm also open to AI-evaluation work, drawing on four years of guideline-based review at Humanatic.</p>
         </div>
@@ -403,6 +403,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
           <dt>focus</dt><dd>Backend · Bitcoin · Lightning</dd>
           <dt>languages</dt><dd>Rust · Solidity · Cairo · HTML · CSS · Python · JavaScript</dd>
           <dt>ecosystems</dt><dd>Bitcoin · Lightning · Stellar · EVM</dd>
+          <dt>education</dt><dd>B.Eng Mechanical Engineering, University of Nigeria, Nsukka (2022)</dd>
           <dt>training</dt><dd>THE BUIDL, Blockheader (2026)</dd>
           <dt>experience</dt><dd>Humanatic, call reviewer (2021–2025)</dd>
           <dt>status</dt><dd class="g">open to work ●</dd>
@@ -657,17 +658,16 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   /* ---------------- stack: bar chart ---------------- */
   (function renderBars() {
     var data = [
-      { label: 'Stellar · Soroban', n: 5, cls: 'c' },
+      { label: 'Stellar · Soroban', n: 8, cls: 'c' },
       { label: 'Bitcoin · Lightning', n: 3, cls: 'y' },
-      { label: 'Other Rust', n: 3, cls: 'm' },
       { label: 'AI · payments', n: 1, cls: 'g' }
     ];
-    var max = 5, width = 25, pad = 20;
+    var max = 8, width = 24, pad = 20;
     var out = data.map(function (d) {
       var cells = Math.round(d.n / max * width);
       return d.label + ' '.repeat(pad - d.label.length) + '<span class="' + d.cls + '">' + '█'.repeat(cells) + '</span>' + '<span class="d">' + '░'.repeat(width - cells) + '</span> ' + '<span class="bold">' + d.n + '</span>';
     });
-    out.push(' '.repeat(pad) + '<span class="d">0' + ' '.repeat(width - 1) + '5</span>');
+    out.push(' '.repeat(pad) + '<span class="d">0' + ' '.repeat(width - 1) + '8</span>');
     $('#bars').innerHTML = out.join('\n');
   })();
 
