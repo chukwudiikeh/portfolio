@@ -218,7 +218,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
         <span class="bt"> README.md </span>
         <div class="prose">
           <p>I build backend systems in <span class="a bold">Rust</span>, mostly on Bitcoin and Stellar: wallet libraries, Lightning payment flows and Soroban smart contracts. I also contribute to the <span class="y">Bitcoin Dev Kit</span>.</p>
-          <p class="d">Looking for backend, blockchain or AI-evaluation roles. Press <span class="c bold">2</span> to browse projects or <span class="c bold">?</span> for keys.</p>
+          <p class="d">Looking for backend, blockchain or AI-evaluation roles. Press <span class="c bold">2</span> to browse projects, <span class="c bold">c</span> to download my <a class="a" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf">CV</a> or <span class="c bold">?</span> for keys.</p>
         </div>
       </div>
 
@@ -377,6 +377,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
         <span class="bt"> message </span>
         <div class="prose">
           <p>Hiring for a backend, Rust or Bitcoin role, or need another pair of hands on a protocol or hackathon team? Email is the fastest way to reach me.</p>
+          <p class="d">CV: <a class="a" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf">download PDF ↓</a></p>
           <p class="d">Email: <span class="fg" id="mailText" style="color:var(--fg);user-select:all">celestineleste@gmail.com</span></p>
         </div>
       </div>
@@ -392,6 +393,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       <span class="kb-only"><span class="k">↑↓</span> <span class="t">select</span></span>
       <span class="kb-only"><span class="k">⏎</span> <span class="t">open</span></span>
       <button type="button" id="themeBtn"><span class="k">t</span> <span class="t">theme</span></button>
+      <a id="cvBtn" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf" style="text-decoration:none"><span class="k">c</span> <span class="t">cv</span></a>
       <button type="button" id="helpBtn"><span class="k">?</span> <span class="t">help</span></button>
     </span>
     <span class="st-right"><span id="msg"></span><span class="wide">utf-8 · rust</span></span>
@@ -409,6 +411,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       <dt>g / G</dt><dd>first / last item</dd>
       <dt>⏎</dt><dd>open selected item</dd>
       <dt>y</dt><dd>copy my email</dd>
+      <dt>c</dt><dd>download my CV</dd>
       <dt>t</dt><dd>toggle light / dark</dd>
       <dt>? / esc</dt><dd>show / hide this help</dd>
     </dl>
@@ -498,7 +501,8 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   var contacts = [
     { k: 'email', v: 'celestineleste@gmail.com', act: 'copy' },
     { k: 'github', v: 'github.com/chukwudiikeh', url: 'https://github.com/chukwudiikeh' },
-    { k: 'linkedin', v: 'linkedin.com/in/celestine-ikeh-492bab1aa', url: 'https://www.linkedin.com/in/celestine-ikeh-492bab1aa' }
+    { k: 'linkedin', v: 'linkedin.com/in/celestine-ikeh-492bab1aa', url: 'https://www.linkedin.com/in/celestine-ikeh-492bab1aa' },
+    { k: 'cv', v: 'Ikeh_Celestine_Chukwudi_CV.pdf', url: 'Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf', dl: true }
   ];
   var tabs = [
     { id: 'home', label: 'Home' }, { id: 'projects', label: 'Projects' }, { id: 'stack', label: 'Stack' },
@@ -618,9 +622,9 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   function renderContact() {
     $('#contactList').innerHTML = contacts.map(function (c, i) {
       var sel = i === state.contact;
-      var inner = '<span class="hs">' + (sel ? '▶' : '') + '</span><span class="nm"><span class="' + (sel ? '' : 'c') + '">' + c.k.padEnd(9) + '</span>' + c.v + '</span><span class="sub">' + (c.url ? 'open ↗' : 'copy') + '</span>';
+      var inner = '<span class="hs">' + (sel ? '▶' : '') + '</span><span class="nm"><span class="' + (sel ? '' : 'c') + '">' + c.k.padEnd(9) + '</span>' + c.v + '</span><span class="sub">' + (c.dl ? 'download ↓' : c.url ? 'open ↗' : 'copy') + '</span>';
       return c.url
-        ? '<a class="li' + (sel ? ' sel' : '') + '" style="text-decoration:none" data-i="' + i + '" href="' + c.url + '" target="_blank" rel="noopener">' + inner + '</a>'
+        ? '<a class="li' + (sel ? ' sel' : '') + '" style="text-decoration:none" data-i="' + i + '" href="' + c.url + '"' + (c.dl ? ' download="Ikeh_Celestine_Chukwudi_CV.pdf"' : ' target="_blank" rel="noopener"') + '>' + inner + '</a>'
         : '<button type="button" class="li' + (sel ? ' sel' : '') + '" data-i="' + i + '">' + inner + '</button>';
     }).join('');
     $$('#contactList .li').forEach(function (el) {
@@ -705,6 +709,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
     else if (k === 'G') move(0, 'last');
     else if (k === 'Enter') { if (document.activeElement && document.activeElement !== document.body && /^(A|BUTTON)$/.test(document.activeElement.tagName)) return; enter(); }
     else if (k === 'y') yank();
+    else if (k === 'c') { $('#cvBtn').click(); flash('downloading CV'); }
     else if (k === 't') toggleTheme();
     else if (k === '?') help(true);
     else if (k === 'q' || k === 'Escape') setTab('home');
