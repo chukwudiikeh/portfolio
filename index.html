@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Celestine Ikeh: Rust backend developer working on Bitcoin, Lightning and Stellar/Soroban.">
 <title>Celestine Ikeh — Rust Developer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0d10'/%3E%3Cpath d='M14 20l12 12-12 12' fill='none' stroke='%23f0793a' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='32' y='40' width='18' height='6' rx='2' fill='%23f0793a'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://celestine-rs.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://celestine-rs.vercel.app/">
+<meta property="og:title" content="Ikeh Celestine Chukwudi — Rust Backend Developer">
+<meta property="og:description" content="Rust backend developer building on Bitcoin, Lightning and Stellar/Soroban. 200+ merged pull requests across open-source projects.">
+<meta property="og:image" content="https://celestine-rs.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ikeh Celestine Chukwudi — Rust Backend Developer">
+<meta name="twitter:description" content="Rust backend developer building on Bitcoin, Lightning and Stellar/Soroban.">
+<meta name="twitter:image" content="https://celestine-rs.vercel.app/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +92,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Tabs */
 .tabs { padding: 10px 12px 8px; }
 .tab-row { display: flex; align-items: center; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.touch-only { display: none; }
+@media (max-width: 860px), (hover: none) {
+  .kb-only { display: none !important; }
+  .touch-only { display: inline; }
+}
 .tab-row::-webkit-scrollbar { display: none; }
 .tab { padding: 1px 10px; border-radius: 3px; color: var(--fg); }
 .tab .k { color: var(--dim); margin-right: 6px; }
@@ -193,6 +212,9 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   .view { height: auto; overflow: visible; }
   .v-stack, .v-about, .v-contact { grid-template-columns: minmax(0, 1fr); }
   .hints .kb-only { display: none; }
+  .tab-row { flex-wrap: wrap; white-space: normal; row-gap: 6px; }
+  .tab-row .sep, .tab .k { display: none; }
+  .tab { padding: 2px 10px; }
   .st-right .wide { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
@@ -215,7 +237,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       <div class="blk home-banner">
         <span class="bt"> Ikeh Celestine Chukwudi </span>
         <span class="bt r">open to work <span class="g">●</span></span>
-        <div style="overflow:hidden"><pre id="banner"> ██████╗███████╗██╗     ███████╗███████╗████████╗██╗███╗   ██╗███████╗
+        <div style="overflow:hidden"><pre id="banner" role="img" aria-label="Celestine"> ██████╗███████╗██╗     ███████╗███████╗████████╗██╗███╗   ██╗███████╗
 ██╔════╝██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██║████╗  ██║██╔════╝
 ██║     █████╗  ██║     █████╗  ███████╗   ██║   ██║██╔██╗ ██║█████╗
 ██║     ██╔══╝  ██║     ██╔══╝  ╚════██║   ██║   ██║██║╚██╗██║██╔══╝
@@ -228,13 +250,13 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
         <span class="bt"> README.md </span>
         <div class="prose">
           <p>I build backend systems in <span class="a bold">Rust</span>, mostly on Bitcoin and Stellar: wallet libraries, Lightning payment flows and Soroban smart contracts. I also contribute to the <span class="y">Bitcoin Dev Kit</span>.</p>
-          <p class="d">Looking for backend, blockchain or AI-evaluation roles. Press <span class="c bold">2</span> to browse projects, <span class="c bold">c</span> to download my <a class="a" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf">CV</a> or <span class="c bold">?</span> for keys.</p>
+          <p class="d">Looking for backend, blockchain or AI-evaluation roles. <span class="kb-only">Press <span class="c bold">2</span> to browse projects, <span class="c bold">c</span> to download my <a class="a" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf">CV</a> or <span class="c bold">?</span> for keys.</span><span class="touch-only">Tap <span class="c bold">Projects</span> above to see my work, or download my <a class="a" href="Ikeh_Celestine_Chukwudi_-_CV_1_1.pdf" download="Ikeh_Celestine_Chukwudi_CV.pdf">CV</a>.</span></p>
         </div>
       </div>
 
       <div class="blk home-feat">
         <span class="bt"> featured </span>
-        <span class="bt r">⏎ open</span>
+        <span class="bt r kb-only">⏎ open</span>
         <div class="list" id="featList"></div>
       </div>
 
@@ -397,7 +419,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
     <section class="view v-contact" data-view="contact" role="tabpanel" hidden>
       <div class="blk focus">
         <span class="bt"> contact </span>
-        <span class="bt r">⏎ open · y yank email</span>
+        <span class="bt r kb-only">⏎ open · y yank email</span>
         <div class="list" id="contactList"></div>
       </div>
       <div class="blk">
