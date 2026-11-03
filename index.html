@@ -151,6 +151,12 @@ pre.code { margin: 0; white-space: pre; line-height: 1.6; overflow-x: auto; }
 .d-flow { margin-top: 26px; }
 .d-link { display: inline-flex; gap: 10px; margin-top: 18px; text-decoration: none; padding: 3px 10px; border: 1px solid var(--border); border-radius: 3px; }
 .d-link:hover { border-color: var(--accent); }
+.d-shot { display: block; margin-top: 16px; max-width: 72ch; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; text-decoration: none; }
+.d-shot img { display: block; width: 100%; height: auto; }
+.d-shot span { display: block; padding: 4px 10px; font-size: 12px; color: var(--dim); border-top: 1px solid var(--border); }
+.d-shot:hover { border-color: var(--accent); }
+.d-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.d-links .d-link { margin-top: 18px; }
 .d-link .kbd { color: var(--accent); font-weight: 700; }
 
 /* stack */
@@ -500,6 +506,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       flow: 'buyer pays ─▶ ' + B('HOLD INVOICE') + '\n                 │\n secret at ──────┼──▶ ' + G('SETTLED') + '  → seller\n handover        │\n deadline ───────┴──▶ ' + A('REFUNDED') + ' → buyer' },
     { id: 'finpal', group: 'own', name: 'FinPal', short: 'ai · payments', tags: ['Backend', 'AI', 'PayPal'],
       role: 'Backend engineer, PayPal AI Hackathon team', url: 'https://github.com/chukwudiikeh/FinPal',
+      demo: 'https://finpal-web-3bmw.onrender.com/', shot: 'finpal.jpg',
       sum: 'An agentic purchasing assistant. Every purchase is checked against the user’s spending rules, real market prices and the merchant before a PayPal Sandbox payment is authorised.',
       bul: ['Designed the decision logic and the PayPal and AI integrations', 'Fixed rules decide; the AI model only explains the decision in plain language', 'Every step is written to an audit log'],
       flow: 'purchase\n  ├─ spending rules   ' + G('✓') + '\n  ├─ market price     ' + G('✓') + '\n  └─ merchant check   ' + G('✓') + '\n          ▼\n' + G('approve') + ' │ ' + Y('review') + ' │ ' + A('block') + '  → audit log' },
@@ -638,9 +645,11 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       '<div class="d-tags">' + p.tags.map(function (t, i) { return '<span class="tag ' + tagCols[i % 4] + '">' + t + '</span>'; }).join('') + '</div>' +
       '<div class="d-role">role: <b>' + p.role + '</b></div>' +
       '<p class="d-sum">' + p.sum + '</p>' +
+      (p.shot ? '<a class="d-shot" href="' + p.demo + '" target="_blank" rel="noopener"><img src="' + p.shot + '" alt="Screenshot of the ' + p.name + ' live site" loading="lazy" width="1439" height="840"><span>live site · ' + p.demo.replace('https://', '').replace(/\/$/, '') + ' ↗</span></a>' : '') +
       '<ul class="d-bul">' + p.bul.map(function (b) { return '<li><span>' + b + '</span></li>'; }).join('') + '</ul>' +
       '<div class="blk inner d-flow"><span class="bt"> flow </span><pre class="code">' + p.flow + '</pre></div>' +
-      '<a class="d-link" id="projLink" href="' + p.url + '" target="_blank" rel="noopener"><span class="kbd">⏎</span><span>' + p.url.replace('https://', '') + '</span><span class="d">↗</span></a>';
+      '<div class="d-links"><a class="d-link" id="projLink" href="' + p.url + '" target="_blank" rel="noopener"><span class="kbd">⏎</span><span>' + p.url.replace('https://', '') + '</span><span class="d">↗</span></a>' +
+      (p.demo ? '<a class="d-link" href="' + p.demo + '" target="_blank" rel="noopener"><span class="kbd">▶</span><span>live demo</span><span class="d">↗</span></a>' : '') + '</div>';
     var selEl = $('.li.sel', projList); if (selEl) selEl.scrollIntoView({ block: 'nearest' });
   }
 
