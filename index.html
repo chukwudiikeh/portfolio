@@ -501,6 +501,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       flow: 'owner ─▶ ' + B('Vault') + '\n           ├─ beneficiary A\n           ├─ beneficiary B\n           └─ beneficiary C\n                 ▼\n         ' + G('automated transfer') },
     { id: 'toshi', group: 'own', name: 'Toshi Way', short: 'lightning', tags: ['Bitcoin', 'Lightning', 'Escrow'],
       role: 'Hackathon, team of two. I wrote most of the Bitcoin and Lightning logic', url: 'https://github.com/chukwudiikeh/toshi-way',
+      shot: 'toshi.jpg', shotW: 1365, shotH: 625, shotNote: 'running on a Lightning regtest network · source on GitHub',
       sum: 'Escrow on the Lightning Network for courier deliveries. The buyer’s payment is locked in a hold invoice and released to the seller only when the buyer hands over a secret, with automatic refunds after a deadline.',
       bul: ['Built the hold-invoice escrow flow', 'QR-code release at handover', 'Optional arbiters for disputes'],
       flow: 'buyer pays ─▶ ' + B('HOLD INVOICE') + '\n                 │\n secret at ──────┼──▶ ' + G('SETTLED') + '  → seller\n handover        │\n deadline ───────┴──▶ ' + A('REFUNDED') + ' → buyer' },
@@ -645,7 +646,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
       '<div class="d-tags">' + p.tags.map(function (t, i) { return '<span class="tag ' + tagCols[i % 4] + '">' + t + '</span>'; }).join('') + '</div>' +
       '<div class="d-role">role: <b>' + p.role + '</b></div>' +
       '<p class="d-sum">' + p.sum + '</p>' +
-      (p.shot ? '<a class="d-shot" href="' + p.demo + '" target="_blank" rel="noopener"><img src="' + p.shot + '" alt="Screenshot of the ' + p.name + ' live site" loading="lazy" width="1600" height="778"><span>live site · ' + p.demo.replace('https://', '').replace(/\/$/, '') + ' ↗</span></a>' : '') +
+      (p.shot ? '<a class="d-shot" href="' + (p.demo || p.url) + '" target="_blank" rel="noopener"><img src="' + p.shot + '" alt="Screenshot of the ' + p.name + ' app" loading="lazy" width="' + (p.shotW || 1600) + '" height="' + (p.shotH || 778) + '"><span>' + (p.shotNote || ('live site · ' + p.demo.replace('https://', '').replace(/\/$/, ''))) + ' ↗</span></a>' : '') +
       '<ul class="d-bul">' + p.bul.map(function (b) { return '<li><span>' + b + '</span></li>'; }).join('') + '</ul>' +
       '<div class="blk inner d-flow"><span class="bt"> flow </span><pre class="code">' + p.flow + '</pre></div>' +
       '<div class="d-links"><a class="d-link" id="projLink" href="' + p.url + '" target="_blank" rel="noopener"><span class="kbd">⏎</span><span>' + p.url.replace('https://', '') + '</span><span class="d">↗</span></a>' +
