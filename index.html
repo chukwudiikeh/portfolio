@@ -354,7 +354,7 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
         <div class="stats">
           <div class="stat"><div class="big" data-stat="prs">207</div><div class="lbl">merged pull requests</div></div>
           <div class="stat"><div class="big" data-stat="repos">76</div><div class="lbl">repos contributed to</div></div>
-          <div class="stat"><div class="big" data-stat="orgs">&nbsp;</div><div class="lbl">orgs and maintainers</div></div>
+          <div class="stat"><div class="big" data-stat="orgs">69</div><div class="lbl">orgs and maintainers</div></div>
         </div>
         <div class="tbl-wrap contrib-wrap">
           <table class="tbl">
@@ -365,11 +365,11 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
         <a class="d-link" href="https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3Achukwudiikeh" target="_blank" rel="noopener"><span class="kbd">↗</span><span>all merged PRs on GitHub</span></a>
       </div>
       <div class="blk focus">
-        <span class="bt"> bitcoindevkit/bdk-cli </span>
-        <span class="bt r">highlight · merged pull requests</span>
+        <span class="bt"> featured pull requests </span>
+        <span class="bt r">all merged</span>
         <div class="tbl-wrap">
           <table class="tbl">
-            <thead><tr><th>STATUS</th><th>PR</th><th>TITLE</th></tr></thead>
+            <thead><tr><th>STATUS</th><th>REPOSITORY</th><th>PR</th><th>CHANGE</th><th>TITLE</th></tr></thead>
             <tbody id="ossRows"></tbody>
           </table>
         </div>
@@ -542,9 +542,17 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   ];
   var featured = ['wallet', 'toshi', 'ttl', 'ethos'];
   var prs = [
-    { n: 353, url: 'https://github.com/bitcoindevkit/bdk-cli/pull/353', title: 'Show warnings by default, incl. mainnet notice',
+    { repo: 'bitcoindevkit/bdk-cli', n: 353, size: '+tests', url: 'https://github.com/bitcoindevkit/bdk-cli/pull/353', title: 'Show warnings by default, incl. mainnet notice',
       body: 'Made warnings visible without extra flags, so users always see the mainnet notice. Added tests covering the behaviour.' },
-    { n: 346, url: 'https://github.com/bitcoindevkit/bdk-cli/pull/346', title: 'Use a Rust enum for script types in compile',
+    { repo: 'Synapse-bridgez/synapse-core', n: 590, size: '+908 −33', url: 'https://github.com/Synapse-bridgez/synapse-core/pull/590', title: 'Exactly-once webhook delivery, DLQ routing and circuit breaker',
+      body: 'Made webhook delivery safe across multiple server replicas: each pending row is claimed by exactly one worker with <span class="c">SELECT … FOR UPDATE SKIP LOCKED</span>, stuck jobs are reclaimed after a timeout, failed deliveries go to a dead-letter queue, and a per-endpoint circuit breaker stops hammering endpoints that are down. Rust backend.' },
+    { repo: 'StellarCheckMate/Checkmate-Escrow', n: 1072, size: '+442 −38', url: 'https://github.com/StellarCheckMate/Checkmate-Escrow/pull/1072', title: 'Fix multi-token escrow payout and oracle rate validation',
+      body: 'Fixed a bug in the Soroban escrow contract where multi-token matches always paid the winner in the wrong token. Added bounded-deviation oracle rate checks (±5%) and price-staleness limits so callers cannot manipulate the conversion rate, and re-enabled the test suite.' },
+    { repo: 'NovaGrids/VaultDAO', n: 2007, size: '+460 −19', url: 'https://github.com/NovaGrids/VaultDAO/pull/2007', title: 'Stream and clawback accounting fixes in the vault contract',
+      body: 'Fixed four accounting bugs in a Soroban vault contract, one commit per issue. For example, cancelling a stream now pays the recipient the funds they had already earned instead of leaving them stuck in the vault, so <span class="c">refund + claimed == total</span> always holds, and clawbacks now actually move tokens.' },
+    { repo: 'Veritas-Vaults-Network/Soroban-Guard-Core', n: 315, size: '+1,077', url: 'https://github.com/Veritas-Vaults-Network/Soroban-Guard-Core/pull/315', title: 'Four new security checks for Soroban contracts',
+      body: 'Added four static-analysis checks to a Rust security scanner for Soroban smart contracts, across 21 files. They catch real vulnerabilities, such as storing long-lived state (admin, balances, allowances) in temporary storage, where it silently expires with the TTL.' },
+    { repo: 'bitcoindevkit/bdk-cli', n: 346, size: 'refactor', url: 'https://github.com/bitcoindevkit/bdk-cli/pull/346', title: 'Use a Rust enum for script types in compile',
       body: 'Refactored the <span class="c">compile</span> command so accepted script types live in one Rust enum, keeping the valid values in one place.' }
   ];
   var contacts = [
@@ -706,13 +714,13 @@ pre.bars { margin: 0; white-space: pre; overflow-x: auto; line-height: 1.75; }
   /* ---------------- oss ---------------- */
   function renderOss() {
     $('#ossRows').innerHTML = prs.map(function (p, i) {
-      return '<tr class="row' + (i === state.pr ? ' sel' : '') + '" data-i="' + i + '"><td><span class="g">● merged</span></td><td><span class="a">#' + p.n + '</span></td><td>' + p.title + '</td></tr>';
+      return '<tr class="row' + (i === state.pr ? ' sel' : '') + '" data-i="' + i + '"><td><span class="g">● merged</span></td><td>' + p.repo + '</td><td><span class="a">#' + p.n + '</span></td><td><span class="d">' + p.size + '</span></td><td>' + p.title + '</td></tr>';
     }).join('');
     $$('#ossRows tr').forEach(function (tr) {
       tr.addEventListener('click', function () { state.pr = +tr.dataset.i; renderOss(); });
     });
     var p = prs[state.pr];
-    $('#ossTitle').textContent = ' #' + p.n + ' ';
+    $('#ossTitle').textContent = ' ' + p.repo + ' #' + p.n + ' ';
     $('#ossBody').innerHTML = '<div class="prose"><p class="bold">' + p.title + '</p><p>' + p.body + '</p></div>' +
       '<a class="d-link" id="ossLink" href="' + p.url + '" target="_blank" rel="noopener"><span class="kbd">⏎</span><span>' + p.url.replace('https://', '') + '</span><span class="d">↗</span></a>';
   }
